@@ -8,9 +8,24 @@ eventual platforms to be supported is listed below:
  - [ ] WonderSwan
  - [ ] NeoGeo Pocket
 
-To use TRH, simply make sure that this directory is on your `CMAKE_MODULE_PATH`
-before calling `project` or `enable_language`. You can easily do this by either
-using [`FetchContent`], or calling `add_subdirectory` if you're using a
-vendored software approach.
+# Usage
+
+As long as TRH is added to your `CMAKE_MODULE_PATH` prior to the first call to
+`project()` or `enable_language`, you will be able to use its platform and
+compiler detection features.
+
+One of the easiest ways to use TRH is via [`FetchContent`]:
+
+```cmake
+cmake_minimum_required(VERSION 3.25)
+include(FetchContent)
+FetchContent_Declare(trh
+    GIT_REPOSITORY https://github.com/ixm-one/trh
+    GIT_TAG main)
+FetchContent_MakeAvailable(trh)
+```
+
+Feel free to replace `main` with any `git rev-parse` capable entry. CMake will
+use that specific revision to access it.
 
 [`FetchContent`]: https://cmake.org/cmake/help/latest/module/FetchContent.html
